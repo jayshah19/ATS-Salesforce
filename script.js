@@ -1,5 +1,3 @@
-const SALESFORCE_ENDPOINT = "";
-
 const form = document.querySelector("#applicationForm");
 const statusMessage = document.querySelector("#formStatus");
 const payloadOutput = document.querySelector("#payloadOutput");
@@ -25,61 +23,22 @@ function buildLeadPayload(formElement) {
   };
 }
 
-function buildApiFormData(formElement, payload) {
-  const apiFormData = new FormData();
-  const resume = new FormData(formElement).get("resume");
+form.addEventListener("submit", (event) => {
 
-  Object.entries(payload).forEach(([key, value]) => {
-    apiFormData.append(key, value);
-  });
-
-  if (resume instanceof File && resume.size > 0) {
-    apiFormData.append("resume", resume, resume.name);
-  }
-
-  return apiFormData;
-}
-
-async function submitToSalesforce(formElement, payload) {
-  if (!SALESFORCE_ENDPOINT) {
-    return {
-      skipped: true,
-      message: "No Salesforce endpoint configured. Payload preview generated only."
-    };
-  }
-
-  const response = await fetch(SALESFORCE_ENDPOINT, {
-    method: "POST",
-    body: buildApiFormData(formElement, payload)
-  });
-
-  if (!response.ok) {
-    throw new Error(`Salesforce submission failed with status ${response.status}.`);
-  }
-
-  return {
-    skipped: false,
-    message: "Application sent to Salesforce."
-  };
-}
-
-form.addEventListener("submit", async (event) => {
-  event.preventDefault();
-  statusMessage.textContent = "";
 
   if (!form.checkValidity()) {
+    event.preventDefault();
     form.reportValidity();
     statusMessage.textContent = "Please complete all required fields.";
     return;
   }
 
-  const payload = buildLeadPayload(form);
-  payloadOutput.textContent = JSON.stringify(payload, null, 2);
 
-  try {
-    const result = await submitToSalesforce(form, payload);
-    statusMessage.textContent = result.message;
-  } catch (error) {
-    statusMessage.textContent = error.message;
+  const payload = buildLeadPayload(form);
+  if (payloadOutput) {
+    payloadOutput.textContent = JSON.stringify(payload, null, 2);
   }
+
+
+
 });
