@@ -87,26 +87,22 @@
           <section>
             <h2>How this form maps to Salesforce</h2>
             <p>
-              Submitting the form prepares a Lead payload for your Lead to Flow process. The skills field is sent as
-              <code>Skills_Applied__c</code>, which can flow into
-              <code>Job_Application.Candidate_Skills_Free_Text__c</code> for scoring.
+              Submitting this form creates a Lead in Salesforce via Web-to-Lead. A Flow then automatically
+              creates a Candidate, matches the Position, and generates a Job Application record.
             </p>
           </section>
         </article>
 
         <aside class="apply-panel" id="apply" aria-labelledby="apply-title">
 
-         
           <form
             id="applicationForm"
             action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8"
             method="POST"
-            enctype="multipart/form-data"
             novalidate
           >
             <input type="hidden" name="oid" value="00Dbm00000jRApN">
-     
-
+            <input type="hidden" name="retURL" value="https://jayshah19.github.io/ATS-Salesfroe/thank-you.html">
             <input type="hidden" name="Position_Key__c" value="SFDC-DEV-001">
             <input type="hidden" name="lead_source" value="Career Web Page">
 
@@ -182,25 +178,12 @@
               </p>
             </fieldset>
 
-            <fieldset>
-              <legend>Resume</legend>
-              <label class="file-label">
-                <span>Resume Upload</span>
-                <input type="file" name="resume" accept=".pdf,.doc,.docx">
-              </label>
-              <p class="help-text">PDF, DOC, or DOCX. File name will be recorded; full upload handled separately.</p>
-            </fieldset>
-
             <div class="form-actions">
               <button type="submit">Submit Application</button>
               <p id="formStatus" class="status-message" role="status" aria-live="polite"></p>
             </div>
           </form>
 
-          <section class="payload-preview" aria-labelledby="payload-title">
-            <h3 id="payload-title">Salesforce POST body preview</h3>
-            <pre id="payloadOutput">Submit the form to preview mapped Lead fields.</pre>
-          </section>
         </aside>
       </div>
     </main>
