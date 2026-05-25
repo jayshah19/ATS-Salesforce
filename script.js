@@ -1,6 +1,12 @@
-// Where your middleware / Web-to-Lead endpoint lives.
-// Leave blank while you’re just previewing the payload.
-const SALESFORCE_ENDPOINT = "00Dd200000hogL3";
+// Web-to-Lead servlet endpoint – this must be EXACTLY this path.
+const SALESFORCE_ENDPOINT =
+  "https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8";
+
+// TODO: replace with your real 15- or 18-char Salesforce Org Id
+const SALESFORCE_ORG_ID = "00Dd200000hogL3";
+
+// TODO: replace with your actual thank-you URL (or keep same page)
+const WEB_TO_LEAD_RET_URL = "https://stablewp.com/wp-content/uploads/2019/12/thankyou1.png";
 
 // DOM references
 const form = document.querySelector("#applicationForm");
@@ -8,60 +14,46 @@ const statusMessage = document.querySelector("#formStatus");
 const payloadOutput = document.querySelector("#payloadOutput");
 
 /**
- * Build a payload that clearly separates Candidate, Position, and Application
- * while still being a flat object Salesforce can accept as a Lead.
+ * Build a payload that separates Candidate, Position, and Application
+ * while still being a flat object compatible with Web-to-Lead / Flow.
  *
- * You will create matching custom fields on Lead and map them in Flow:
- *   Lead.Candidate_Experience_Years__c      → Candidate__c.Experience_Years__c
- *   Lead.Candidate_Primary_Skills__c       → Candidate__c.Primary_Skills__c
- *   Lead.Position_Key__c                   → Position__c.Position_Key__c (or Id)
- *   Lead.Desired_Position_Title__c         → Position__c.Title__c
- *   Lead.Application_Source__c             → Application__c.Source__c
- *   Lead.Skills_Applied__c                 → Application__c.Candidate_Skills_Free_Text__c
+ * You will create matching custom fields on Lead and map them in Flow.
  */
 function buildLeadPayload(formElement) {
   const formData = new FormData(formElement);
   const resume = formData.get("resume");
 
-  // Basic candidate identity (standard Lead-style fields)
   const firstName = (formData.get("first_name") || "").trim();
   const lastName = (formData.get("last_name") || "").trim();
 
   return {
-    // ---------- Standard Lead-ish fields ----------
-    FirstName: firstName,
-    LastName: lastName,
-    Email: (formData.get("email") || "").trim(),
-    Phone: (formData.get("phone") || "").trim(),
-    Company: (formData.get("company") || "").trim() || "Individual Applicant",
+    // ---------- Standard Lead-style fields ----------
+    first_name: firstName,
+    last_name: lastName,
+    email: (formData.get("email") || "").trim(),
+    phone: (formData.get("phone") || "").trim(),
+    company: (formData.get("company") || "").trim() || "Individual Applicant",
 
-    // ---------- Candidate-related custom fields on Lead ----------
-    Candidate_Experience_Years__c: Number(
-      formData.get("Candidate_Experience_Years__c") || 0
-    ),
+    // ---------- Candidate-related custom fields ----------
+    Candidate_Experience_Years__c:
+      (formData.get("Candidate_Experience_Years__c") || "").trim(),
     Candidate_Primary_Skills__c:
       (formData.get("Candidate_Primary_Skills__c") || "").trim(),
-
-    // You can still keep a free-text “skills applied” field if you like
     Skills_Applied__c: (formData.get("Skills_Applied__c") || "").trim(),
 
-    // ---------- Position-related custom fields on Lead ----------
-    // External key that Flow uses to find the Position__c record
+    // ---------- Position-related custom fields ----------
     Position_Key__c: formData.get("Position_Key__c") || "",
     Desired_Position_Title__c:
       (formData.get("Desired_Position_Title__c") || "").trim(),
     Location_Preference__c: formData.get("Location_Preference__c") || "",
 
-    // ---------- Application-related custom fields on Lead ----------
-    // This will become Application__c.Source__c in your Flow
+    // ---------- Application-related custom fields ----------
     Application_Source__c:
       formData.get("Application_Source__c") || "Career Web Page",
-
-    // Optional: you can pass a desired initial stage for the application
     Initial_Application_Stage__c:
       formData.get("Initial_Application_Stage__c") || "Applied",
 
-    // ---------- Resume metadata (for logging / attachments later) ----------
+    // ---------- Resume metadata ----------
     Resume_File_Name__c: resume?.name || "",
     Resume_Content_Type__c: resume?.type || "",
     Resume_File_Size__c: resume?.size || 0
@@ -69,17 +61,25 @@ function buildLeadPayload(formElement) {
 }
 
 /**
- * Convert the payload into multipart/form-data for your endpoint.
- * The endpoint can either call Web-to-Lead or Salesforce REST API.
+ * Convert the payload to multipart/form-data for the Web-to-Lead servlet.
+ * Adds the required oid and optional retURL parameters.
  */
 function buildApiFormData(formElement, payload) {
   const apiFormData = new FormData();
   const resume = new FormData(formElement).get("resume");
 
+  // REQUIRED: your Salesforce org id
+  apiFormData.append("oid", SALESFORCE_ORG_ID);
+
+  // Recommended: where Salesforce should redirect after a successful submit
+  apiFormData.append("retURL", WEB_TO_LEAD_RET_URL);
+
+  // Add all payload fields
   Object.entries(payload).forEach(([key, value]) => {
     apiFormData.append(key, value);
   });
 
+  // Optional file upload metadata (your middleware / Flow can handle it)
   if (resume instanceof File && resume.size > 0) {
     apiFormData.append("resume", resume, resume.name);
   }
@@ -88,11 +88,12 @@ function buildApiFormData(formElement, payload) {
 }
 
 async function submitToSalesforce(formElement, payload) {
-  if (!SALESFORCE_ENDPOINT) {
-    // Dev mode: just preview the payload, don’t actually send anywhere
+  if (!SALESFORCE_ORG_ID || SALESFORCE_ORG_ID === "YOUR_ORG_ID_HERE") {
+    // Safety: don't accidentally send without configuring org id
     return {
       skipped: true,
-      message: "No Salesforce endpoint configured. Payload preview only."
+      message:
+        "Org Id not configured. Update SALESFORCE_ORG_ID in script.js to send to Salesforce."
     };
   }
 
@@ -102,6 +103,7 @@ async function submitToSalesforce(formElement, payload) {
   });
 
   if (!response.ok) {
+    // 405 and other errors will surface here
     throw new Error(
       `Salesforce submission failed with status ${response.status}.`
     );
@@ -109,11 +111,11 @@ async function submitToSalesforce(formElement, payload) {
 
   return {
     skipped: false,
-    message: "Application sent to Salesforce."
+    message: "Application sent to Salesforce via Web-to-Lead."
   };
 }
 
-// Submit handler: validate, build payload, preview, then (optionally) send
+// Submit handler: validate → build payload → preview → send
 form.addEventListener("submit", async (event) => {
   event.preventDefault();
   statusMessage.textContent = "";
@@ -125,7 +127,7 @@ form.addEventListener("submit", async (event) => {
   }
 
   const payload = buildLeadPayload(form);
-  // Show nicely formatted JSON preview so you can see Candidate/Position/Application pieces
+  // Show JSON preview so you can confirm Candidate/Position/Application mapping
   payloadOutput.textContent = JSON.stringify(payload, null, 2);
 
   try {
