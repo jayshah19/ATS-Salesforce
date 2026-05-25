@@ -1,194 +1,260 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Salesforce Developer Job Application</title>
-    <link rel="stylesheet" href="styles.css">
-  </head>
-  <body>
-    <header class="site-header">
-      <a class="brand" href="#" aria-label="Apex Talent home">
-        <span class="brand-mark">AT</span>
-        <span>Apex Talent</span>
-      </a>
-      <nav class="top-nav" aria-label="Primary">
-        <a href="#overview">Overview</a>
-        <a href="#responsibilities">Responsibilities</a>
-        <a href="#apply">Apply</a>
-      </nav>
-    </header>
+<head>
+  <meta charset="utf-8" />
+  <title>Apply for Salesforce Role</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <a href="#" class="brand">
+      <span class="brand-mark">ATS</span>
+      <span>Agentforce Talent Studio</span>
+    </a>
+    <nav class="top-nav">
+      <a href="#role">Role</a>
+      <a href="#apply">Apply</a>
+      <a href="#payload">Payload</a>
+    </nav>
+  </header>
 
-    <main>
-      <section class="job-hero" aria-labelledby="job-title">
-        <div class="hero-media" aria-hidden="true">
-          <div class="media-panel">
-            <span>CRM</span>
-            <span>Flows</span>
-            <span>Apex</span>
-            <span>LWC</span>
+  <main>
+    <!-- HERO / ROLE INTRO -->
+    <section class="job-hero" id="role">
+      <div class="hero-copy">
+        <p class="eyebrow">Salesforce Careers</p>
+        <h1>Salesforce Developer – Agentforce & Data Cloud</h1>
+        <p>
+          Join a team that builds modern Salesforce solutions with Apex, Flows,
+          Lightning Web Components, Agentforce, and Data Cloud–powered automations.
+        </p>
+
+        <dl class="job-meta">
+          <div>
+            <dt>Location</dt>
+            <dd>Remote / Toronto Hybrid</dd>
           </div>
+          <div>
+            <dt>Employment Type</dt>
+            <dd>Full-time</dd>
+          </div>
+          <div>
+            <dt>Experience</dt>
+            <dd>3+ years Salesforce</dd>
+          </div>
+        </dl>
+      </div>
+
+      <div class="hero-media">
+        <div class="media-panel">
+          <span>Agentforce</span>
+          <span>Marketing Cloud</span>
+          <span>AI & Data Cloud</span>
+          <span>Flow & LWC</span>
         </div>
-        <div class="hero-copy">
-          <p class="eyebrow">Technology Careers</p>
-          <h1 id="job-title">Salesforce Developer</h1>
+      </div>
+    </section>
+
+    <!-- PAGE GRID: JOB DESCRIPTION + FORM + PAYLOAD -->
+    <section class="page-grid" id="apply">
+      <!-- LEFT: JOB DESCRIPTION -->
+      <article class="job-content">
+        <section>
+          <h2>About the Role</h2>
           <p>
-            Build Salesforce experiences that help sales, service, and operations teams move faster with clean data,
-            reliable automation, and thoughtful user journeys.
+            We are looking for a Salesforce Developer who can translate business
+            requirements into secure, maintainable Salesforce solutions. You will
+            work with admins, architects, and business stakeholders to build
+            automations, integrations, and Lightning experiences.
           </p>
-          <dl class="job-meta" aria-label="Job details">
-            <div>
-              <dt>Location</dt>
-              <dd>Toronto, ON / Hybrid</dd>
-            </div>
-            <div>
-              <dt>Type</dt>
-              <dd>Full-time</dd>
-            </div>
-            <div>
-              <dt>Team</dt>
-              <dd>CRM Delivery</dd>
-            </div>
-          </dl>
-        </div>
-      </section>
+        </section>
 
-      <div class="page-grid">
-        <article class="job-content">
-          <section id="overview">
-            <h2>Overview</h2>
-            <p>
-              We are looking for a Salesforce Developer who can translate business requirements into secure,
-              maintainable Salesforce solutions. You will work with admins, architects, and business stakeholders to
-              build automations, integrations, and Lightning experiences.
-            </p>
-          </section>
+        <section>
+          <h3>What you will do</h3>
+          <ul>
+            <li>Develop Apex classes, triggers, Lightning Web Components, and Flow-based automation.</li>
+            <li>Configure Salesforce objects, validation rules, permission sets, and reporting foundations.</li>
+            <li>Support integrations with external systems using REST APIs and platform events.</li>
+            <li>Partner with business users to refine requirements and improve CRM adoption.</li>
+          </ul>
+        </section>
 
-          <section id="responsibilities">
-            <h2>What you will do</h2>
-            <ul>
-              <li>Develop Apex classes, triggers, Lightning Web Components, and Flow-based automation.</li>
-              <li>Configure Salesforce objects, validation rules, permission sets, and reporting foundations.</li>
-              <li>Support integrations with external systems using REST APIs and platform events.</li>
-              <li>Partner with business users to refine requirements and improve CRM adoption.</li>
-            </ul>
-          </section>
+        <section>
+          <h3>What you bring</h3>
+          <ul>
+            <li>Hands-on Salesforce platform experience with Apex, Flows, LWC, and declarative configuration.</li>
+            <li>Experience with Sales Cloud, Service Cloud, or Marketing Cloud.</li>
+            <li>Interest in AI, Agentforce, and Data Cloud–driven solutions.</li>
+          </ul>
+        </section>
+      </article>
 
-          <section>
-            <h2>What you bring</h2>
-            <ul>
-              <li>Hands-on Salesforce platform experience with Apex, Flows, LWC, and declarative configuration.</li>
-              <li>Clear communication and the ability to document technical decisions.</li>
-              <li>Experience with Sales Cloud, Service Cloud, or Experience Cloud is an asset.</li>
-              <li>Salesforce certifications are welcome, but practical delivery experience matters most.</li>
-            </ul>
-          </section>
+      <!-- RIGHT: APPLICATION FORM + PAYLOAD PREVIEW -->
+      <aside class="apply-panel">
+        <form id="applicationForm" novalidate>
+          <header class="form-header">
+            <h2>Apply for this role</h2>
+            <p>Fields marked with <strong>*</strong> are required.</p>
+          </header>
 
-          <section>
-            <h2>How this form maps to Salesforce</h2>
-            <p>
-              Submitting this form creates a Lead in Salesforce via Web-to-Lead. A Flow then automatically
-              creates a Candidate, matches the Position, and generates a Job Application record.
-            </p>
-          </section>
-        </article>
+          <!-- CANDIDATE SECTION -->
+          <fieldset>
+            <legend>Candidate details</legend>
 
-        <aside class="apply-panel" id="apply" aria-labelledby="apply-title">
-
-          <form
-            id="applicationForm"
-            action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8"
-            method="POST"
-            novalidate
-          >
-            <input type="hidden" name="oid" value="00Dbm00000jRApN">
-            <input type="hidden" name="retURL" value="https://jayshah19.github.io/ATS-Salesfroe/">
-            <input type="hidden" name="Position_Key__c" value="SFDC-DEV-001">
-            <input type="hidden" name="lead_source" value="Career Web Page">
-
-            <div class="form-header">
-              <p class="eyebrow">Apply now</p>
-              <h2 id="apply-title">Job Application</h2>
-              <p>Complete the details below to submit your application.</p>
-            </div>
-
-            <fieldset>
-              <legend>Candidate Info</legend>
-              <div class="form-row two-columns">
-                <label>
-                  <span>First Name <strong aria-hidden="true">*</strong></span>
-                  <input type="text" name="first_name" autocomplete="given-name" required>
-                </label>
-                <label>
-                  <span>Last Name <strong aria-hidden="true">*</strong></span>
-                  <input type="text" name="last_name" autocomplete="family-name" required>
-                </label>
-              </div>
-
+            <div class="form-row two-columns">
               <label>
-                <span>Email <strong aria-hidden="true">*</strong></span>
-                <input type="email" name="email" autocomplete="email" required>
+                First name <strong>*</strong>
+                <input type="text" name="first_name" required />
               </label>
 
-              <div class="form-row two-columns">
-                <label>
-                  <span>Phone</span>
-                  <input type="text" name="phone" autocomplete="tel">
-                </label>
-                <label>
-                  <span>Current Company</span>
-                  <input type="text" name="company" autocomplete="organization">
-                </label>
-              </div>
-            </fieldset>
-
-            <fieldset>
-              <legend>Position Info</legend>
               <label>
-                <span>Desired Position Title <strong aria-hidden="true">*</strong></span>
+                Last name <strong>*</strong>
+                <input type="text" name="last_name" required />
+              </label>
+            </div>
+
+            <div class="form-row two-columns">
+              <label>
+                Email <strong>*</strong>
+                <input type="email" name="email" required />
+              </label>
+
+              <label>
+                Phone
+                <input type="tel" name="phone" />
+              </label>
+            </div>
+
+            <label>
+              Current company
+              <input type="text" name="company" />
+            </label>
+
+            <div class="form-row two-columns">
+              <label>
+                Years of Salesforce experience
                 <input
-                  type="text"
-                  name="Desired_Position_Title__c"
-                  placeholder="Salesforce Developer"
-                  value="Salesforce Developer"
-                  required
-                >
+                  type="number"
+                  min="0"
+                  step="0.5"
+                  name="Candidate_Experience_Years__c"
+                />
+                <span class="help-text">Used by ATS scoring logic.</span>
               </label>
 
               <label>
-                <span>Location Preference</span>
+                Location preference
                 <select name="Location_Preference__c">
-                  <option value="">Select a location</option>
-                  <option>Toronto, ON</option>
-                  <option>Mississauga, ON</option>
-                  <option>Remote - Canada</option>
-                  <option>Hybrid</option>
+                  <option value="">Select…</option>
+                  <option value="Remote">Remote</option>
+                  <option value="Toronto Hybrid">Toronto Hybrid</option>
+                  <option value="Onsite Toronto">Onsite – Toronto</option>
                 </select>
               </label>
-            </fieldset>
-
-            <fieldset>
-              <legend>Skills</legend>
-              <label>
-                <span>Skills <strong aria-hidden="true">*</strong></span>
-                <textarea name="Skills_Applied__c" rows="5" required></textarea>
-              </label>
-              <p class="help-text">
-                List your main skills, separated by commas (e.g., Salesforce Admin, Apex, Flows, LWC).
-              </p>
-            </fieldset>
-
-            <div class="form-actions">
-              <button type="submit" id="submitBtn">Submit Application</button>
-              <p id="formStatus" class="status-message" role="status" aria-live="polite"></p>
             </div>
 
-          </form>
+            <label>
+              Primary Salesforce skills <strong>*</strong>
+              <textarea
+                name="Candidate_Primary_Skills__c"
+                rows="3"
+                required
+                placeholder="Example: AI, Salesforce, Marketing Cloud, Data Cloud, Agentforce, Admin"
+              ></textarea>
+              <span class="help-text">
+                Our scoring engine gives more weight if these keywords appear.
+              </span>
+            </label>
 
-        </aside>
-      </div>
-    </main>
+            <label>
+              Extra skills / notes
+              <textarea
+                name="Skills_Applied__c"
+                rows="2"
+                placeholder="Anything else you'd like to highlight."
+              ></textarea>
+            </label>
+          </fieldset>
 
-    <script src="script.js"></script>
-  </body>
+          <!-- POSITION SECTION -->
+          <fieldset>
+            <legend>Position you’re applying for</legend>
+
+            <label>
+              Desired position title <strong>*</strong>
+              <input
+                type="text"
+                name="Desired_Position_Title__c"
+                required
+                placeholder="e.g., Salesforce Developer"
+              />
+            </label>
+
+            <label>
+              Position key
+              <select name="Position_Key__c">
+                <option value="">Select one…</option>
+                <option value="SF_DEV">Salesforce Developer</option>
+                <option value="SF_ADMIN">Salesforce Administrator</option>
+                <option value="SF_MC_DEV">Salesforce Marketing Cloud Developer</option>
+              </select>
+              <span class="help-text">
+                This key will be used in Flow to look up the Position__c record.
+              </span>
+            </label>
+          </fieldset>
+
+          <!-- APPLICATION SECTION -->
+          <fieldset>
+            <legend>Application details</legend>
+
+            <label>
+              How did you hear about this role?
+              <select name="Application_Source__c">
+                <option value="Career Web Page">Career Web Page</option>
+                <option value="LinkedIn">LinkedIn</option>
+                <option value="Referral">Referral</option>
+                <option value="Job Board">Job Board</option>
+                <option value="Other">Other</option>
+              </select>
+            </label>
+
+            <input
+              type="hidden"
+              name="Initial_Application_Stage__c"
+              value="Applied"
+            />
+
+            <label class="file-label">
+              Resume (PDF or DOC)
+              <input type="file" name="resume" accept=".pdf,.doc,.docx" />
+              <span class="help-text">
+                File metadata (name, size, type) is included in the payload; attach
+                fully in Salesforce later if needed.
+              </span>
+            </label>
+          </fieldset>
+
+          <div class="form-actions">
+            <button type="submit">Submit application</button>
+            <p id="formStatus" class="status-message"></p>
+          </div>
+        </form>
+
+        <!-- PAYLOAD PREVIEW -->
+        <section class="payload-preview" id="payload">
+          <h3>Salesforce payload preview</h3>
+          <p class="help-text">
+            This JSON shows exactly what will be submitted into your Lead → Flow
+            pipeline.
+          </p>
+          <pre><code id="payloadOutput">{}</code></pre>
+        </section>
+      </aside>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
 </html>
