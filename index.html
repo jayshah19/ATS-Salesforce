@@ -92,7 +92,23 @@
 
       <!-- RIGHT: APPLICATION FORM + PAYLOAD PREVIEW -->
       <aside class="apply-panel">
-        <form id="applicationForm" novalidate>
+        <form
+          id="applicationForm"
+          action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8"
+          method="POST"
+          enctype="multipart/form-data"
+          novalidate
+        >
+          <!-- REQUIRED: your Salesforce Org Id (from Web-to-Lead HTML) -->
+          <input type="hidden" name="oid" value="00Dd200000hogL3" />
+
+          <!-- Where Salesforce redirects after successful submit -->
+          <input
+            type="hidden"
+            name="retURL"
+            value="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFcUXcQ7eH4IApbc3vnUJ9NxP6JVhSE4xFtQ&s"
+          />
+
           <header class="form-header">
             <h2>Apply for this role</h2>
             <p>Fields marked with <strong>*</strong> are required.</p>
