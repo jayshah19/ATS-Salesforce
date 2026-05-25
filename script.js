@@ -1,6 +1,6 @@
 // Where your middleware / Web-to-Lead endpoint lives.
 // Leave blank while you’re just previewing the payload.
-const SALESFORCE_ENDPOINT = "";
+const SALESFORCE_ENDPOINT = "00Dd200000hogL3";
 
 // DOM references
 const form = document.querySelector("#applicationForm");
