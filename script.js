@@ -1,13 +1,10 @@
-// DOM references
 const form = document.querySelector("#applicationForm");
-const statusMessage = document.querySelector("#formStatus");
 const payloadOutput = document.querySelector("#payloadOutput");
+const statusMessage = document.querySelector("#formStatus");
 
 /**
- * Build a payload that separates Candidate, Position, and Application
- * while still being a flat object Web-to-Lead & Flow can consume.
- *
- * You will create matching custom fields on Lead and map them in Flow.
+ * Build a debug payload for preview only.
+ * This does NOT affect what Web-to-Lead sends; the real POST comes from the form.
  */
 function buildLeadPayload(formElement) {
   const formData = new FormData(formElement);
@@ -50,23 +47,10 @@ function buildLeadPayload(formElement) {
   };
 }
 
-// On submit: validate + preview JSON, then let the browser post the form.
-form.addEventListener("submit", (event) => {
+// On submit: just build preview, DO NOT prevent default.
+// The native form post will still go to Web-to-Lead.
+form.addEventListener("submit", () => {
   statusMessage.textContent = "";
-
-  if (!form.checkValidity()) {
-    // Ask browser to show native validation UI, then block submit
-    event.preventDefault();
-    form.reportValidity();
-    statusMessage.textContent = "Please complete all required fields.";
-    return;
-  }
-
-  // Build and show payload for debugging / documentation
   const payload = buildLeadPayload(form);
   payloadOutput.textContent = JSON.stringify(payload, null, 2);
-
-  // IMPORTANT: do NOT call preventDefault here.
-  // The browser will now submit the form directly to Web-to-Lead
-  // using the action / method / hidden oid + retURL.
 });
