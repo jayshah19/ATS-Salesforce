@@ -93,12 +93,17 @@
       <!-- RIGHT: APPLICATION FORM + PAYLOAD PREVIEW -->
       <aside class="apply-panel">
         <form
-          id="applicationForm"
-          action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8"
-          method="POST"
-         
-          novalidate
-        >
+  id="applicationForm"
+  action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8"
+  method="POST"
+  novalidate
+>
+  <input type="hidden" name="oid" value="00Dd200000hogL3" />
+  <input type="hidden" name="retURL" value="https://yoursite.com" />
+  <input type="hidden" name="debug" value="1" />
+  <input type="hidden" name="debugEmail" value="jayshah191019@gmail.com" />
+  ...
+</form>
           <!-- REQUIRED: Salesforce Org Id and return URL -->
           <input type="hidden" name="oid" value="00Dd200000hogL3" />
           <input
