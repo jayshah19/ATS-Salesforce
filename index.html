@@ -93,32 +93,18 @@ automations, integrations, and Lightning experiences.
 <!-- RIGHT: APPLICATION FORM + PAYLOAD PREVIEW -->
 <aside class="apply-panel">
 <form
-id="applicationForm"
-action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8"
-method="POST"
-novalidate
+  id="applicationForm"
+  action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8&orgId=00Dbm00000jznGP"
+  method="POST"
+  novalidate
 >
-<input type="hidden" name="oid" value="00Dd200000hogL3" />
-<input type="hidden" name="retURL" value="https://yoursite.com" />
-<input type="hidden" name="debug" value="1" />
-<input type="hidden" name="debugEmail" value="jayshah191019@gmail.com" />
-...
-</form>
-<!-- REQUIRED: Salesforce Org Id and return URL -->
-<input type="hidden" name="oid" value="00Dd200000hogL3" />
-<input
-type="hidden"
-name="retURL"
-value="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFcUXcQ7eH4IApbc3vnUJ9NxP6JVhSE4xFtQ&s"
-/>
+  <input type="hidden" name="oid" value="00Dbm00000jznGP" />
+  <input type="hidden" name="retURL" value="https://yoursite.com" />
+  <input type="hidden" name="lead_source" value="Web" />
 
-<!-- DEBUG (keep while testing; remove later if you want) -->
-<input type="hidden" name="debug" value="1" />
-<input
-type="hidden"
-name="debugEmail"
-value="jayshah191019@gmail.com"
-/>
+  <!-- DEBUG (keep while testing; remove later) -->
+  <input type="hidden" name="debug" value="1" />
+  <input type="hidden" name="debugEmail" value="jayshah191019@gmail.com" />
 
 <header class="form-header">
 <h2>Apply for this role</h2>
@@ -132,59 +118,54 @@ value="jayshah191019@gmail.com"
   <div class="form-row two-columns">
     <label>
       First name <strong>*</strong>
-      <input type="text" name="first_name" required />
+      <input type="text" name="first_name" id="first_name" maxlength="40" required />
     </label>
 
     <label>
       Last name <strong>*</strong>
-      <input type="text" name="last_name" required />
+      <input type="text" name="last_name" id="last_name" maxlength="80" required />
     </label>
   </div>
 
   <div class="form-row two-columns">
     <label>
       Email <strong>*</strong>
-      <input type="email" name="email" required />
+      <input type="email" name="email" id="email" maxlength="80" required />
     </label>
 
     <label>
       Phone
-      <input type="tel" name="phone" />
+      <input type="tel" name="phone" id="phone" maxlength="40" />
     </label>
   </div>
 
   <label>
     Current company
-    <input type="text" name="company" />
+    <input type="text" name="company" id="company" maxlength="40" />
   </label>
 
   <div class="form-row two-columns">
     <label>
       Years of Salesforce experience
       <input
-        type="number"
-        min="0"
-        step="0.5"
-        name="Experience_Years__c"
+        type="text"
+        name="00Nbm00002a5QqX"
+        id="00Nbm00002a5QqX"
       />
       <span class="help-text">Used by ATS scoring logic.</span>
     </label>
 
     <label>
-      Location preference
-      <select name="Location_Preference__c">
-        <option value="">Select…</option>
-        <option value="Remote">Remote</option>
-        <option value="Toronto Hybrid">Toronto Hybrid</option>
-        <option value="Onsite Toronto">Onsite – Toronto</option>
-      </select>
+      State/Province
+      <input type="text" name="state" id="state" maxlength="20" />
     </label>
   </div>
 
   <label>
     Primary Salesforce skills <strong>*</strong>
     <textarea
-      name="Primary_Skills__c"
+      name="00Nbm00002a4xaA"
+      id="00Nbm00002a4xaA"
       rows="3"
       required
       placeholder="Example: AI, Salesforce, Marketing Cloud, Data Cloud, Agentforce, Admin"
@@ -192,15 +173,6 @@ value="jayshah191019@gmail.com"
     <span class="help-text">
       Our scoring engine gives more weight if these keywords appear.
     </span>
-  </label>
-
-  <label>
-    Extra skills / notes
-    <textarea
-      name="Skills_Applied__c"
-      rows="2"
-      placeholder="Anything else you'd like to highlight."
-    ></textarea>
   </label>
 </fieldset>
 
@@ -210,54 +182,19 @@ value="jayshah191019@gmail.com"
 
   <label>
     Select position <strong>*</strong>
-    <select name="Position_Key__c" id="positionSelect" required>
+    <select id="positionSelect" required>
       <option value="">Select a position…</option>
-      <option value="a0X5f000003XyzAAA" data-position-name="Salesforce Developer">Salesforce Developer</option>
-      <option value="a0X5f000003AbcAAA" data-position-name="Salesforce Administrator">Salesforce Administrator</option>
-      <option value="a0X5f000003DefAAA" data-position-name="Salesforce Marketing Cloud Developer">Salesforce Marketing Cloud Developer</option>
+      <option value="Salesforce Developer" data-position-name="Salesforce Developer">Salesforce Developer</option>
+      <option value="Salesforce Administrator" data-position-name="Salesforce Administrator">Salesforce Administrator</option>
+      <option value="Salesforce Marketing Cloud Developer" data-position-name="Salesforce Marketing Cloud Developer">Salesforce Marketing Cloud Developer</option>
     </select>
     <span class="help-text">
       This title is used by the Flow to find the related Position__c and create the Application__c record.
     </span>
   </label>
 
-  <input type="hidden" name="Position_Title__c" id="desiredPositionTitle" />
+  <input type="hidden" name="00Nbm00002a5UR7" id="desiredPositionTitle" maxlength="64" />
 </fieldset>
-
-<!-- APPLICATION SECTION -->
-<fieldset>
-<legend>Application details</legend>
-
-<label>
-How did you hear about this role?
-<select name="Application_Source__c">
-<option value="Career Web Page">Career Web Page</option>
-<option value="LinkedIn">LinkedIn</option>
-<option value="Referral">Referral</option>
-<option value="Job Board">Job Board</option>
-<option value="Other">Other</option>
-</select>
-</label>
-
-<input
-type="hidden"
-name="Initial_Application_Stage__c"
-value="Applied"
-/>
- 
-<!--
-  
-<label class="file-label">
-Resume (PDF or DOC)
-<input type="file" name="resume" accept=".pdf,.doc,.docx" />
-<span class="help-text">
-File metadata (name, size, type) is included in the payload; attach
-fully in Salesforce later if needed.
-</span>
-</label>
-</fieldset>
-
--->
 
 <div class="form-actions">
 <button type="submit">Submit application</button>
