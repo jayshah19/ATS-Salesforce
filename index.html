@@ -127,102 +127,101 @@ value="jayshah191019@gmail.com"
 
 <!-- CANDIDATE SECTION -->
 <fieldset>
-<legend>Candidate details</legend>
+  <legend>Candidate details</legend>
 
-<div class="form-row two-columns">
-<label>
-First name <strong>*</strong>
-<input type="text" name="first_name" required />
-</label>
+  <div class="form-row two-columns">
+    <label>
+      First name <strong>*</strong>
+      <input type="text" name="first_name" required />
+    </label>
 
-<label>
-Last name <strong>*</strong>
-<input type="text" name="last_name" required />
-</label>
-</div>
+    <label>
+      Last name <strong>*</strong>
+      <input type="text" name="last_name" required />
+    </label>
+  </div>
 
-<div class="form-row two-columns">
-<label>
-Email <strong>*</strong>
-<input type="email" name="email" required />
-</label>
+  <div class="form-row two-columns">
+    <label>
+      Email <strong>*</strong>
+      <input type="email" name="email" required />
+    </label>
 
-<label>
-Phone
-<input type="tel" name="phone" />
-</label>
-</div>
+    <label>
+      Phone
+      <input type="tel" name="phone" />
+    </label>
+  </div>
 
-<label>
-Current company
-<input type="text" name="company" />
-</label>
+  <label>
+    Current company
+    <input type="text" name="company" />
+  </label>
 
-<div class="form-row two-columns">
-<label>
-Years of Salesforce experience
-<input
-type="number"
-min="0"
-step="0.5"
-name="Candidate_Experience_Years__c"
-/>
-<span class="help-text">Used by ATS scoring logic.</span>
-</label>
+  <div class="form-row two-columns">
+    <label>
+      Years of Salesforce experience
+      <input
+        type="number"
+        min="0"
+        step="0.5"
+        name="Experience_Years__c"
+      />
+      <span class="help-text">Used by ATS scoring logic.</span>
+    </label>
 
-<label>
-Location preference
-<select name="Location_Preference__c">
-<option value="">Select…</option>
-<option value="Remote">Remote</option>
-<option value="Toronto Hybrid">Toronto Hybrid</option>
-<option value="Onsite Toronto">Onsite – Toronto</option>
-</select>
-</label>
-</div>
+    <label>
+      Location preference
+      <select name="Location_Preference__c">
+        <option value="">Select…</option>
+        <option value="Remote">Remote</option>
+        <option value="Toronto Hybrid">Toronto Hybrid</option>
+        <option value="Onsite Toronto">Onsite – Toronto</option>
+      </select>
+    </label>
+  </div>
 
-<label>
-Primary Salesforce skills <strong>*</strong>
-<textarea
-name="Candidate_Primary_Skills__c"
-rows="3"
-required
-placeholder="Example: AI, Salesforce, Marketing Cloud, Data Cloud, Agentforce, Admin"
-></textarea>
-<span class="help-text">
-Our scoring engine gives more weight if these keywords appear.
-</span>
-</label>
+  <label>
+    Primary Salesforce skills <strong>*</strong>
+    <textarea
+      name="Primary_Skills__c"
+      rows="3"
+      required
+      placeholder="Example: AI, Salesforce, Marketing Cloud, Data Cloud, Agentforce, Admin"
+    ></textarea>
+    <span class="help-text">
+      Our scoring engine gives more weight if these keywords appear.
+    </span>
+  </label>
 
-<label>
-Extra skills / notes
-<textarea
-name="Skills_Applied__c"
-rows="2"
-placeholder="Anything else you'd like to highlight."
-></textarea>
-</label>
+  <label>
+    Extra skills / notes
+    <textarea
+      name="Skills_Applied__c"
+      rows="2"
+      placeholder="Anything else you'd like to highlight."
+    ></textarea>
+  </label>
 </fieldset>
 
-
-<!-- POSITION SECTION (single, combined) -->
+<!-- POSITION SECTION -->
 <fieldset>
   <legend>Position you're applying for</legend>
 
   <label>
     Select position <strong>*</strong>
     <select name="Position_Key__c" id="positionSelect" required>
-  <option value="">Select a position…</option>
-  <option value="a0X5f000003XyzAAA" data-position-name="Salesforce Developer">Salesforce Developer</option>
-  <option value="a0X5f000003AbcAAA" data-position-name="Salesforce Administrator">Salesforce Administrator</option>
-  <option value="a0X5f000003DefAAA" data-position-name="Salesforce Marketing Cloud Developer">Salesforce Marketing Cloud Developer</option>
-</select>
+      <option value="">Select a position…</option>
+      <option value="a0X5f000003XyzAAA" data-position-name="Salesforce Developer">Salesforce Developer</option>
+      <option value="a0X5f000003AbcAAA" data-position-name="Salesforce Administrator">Salesforce Administrator</option>
+      <option value="a0X5f000003DefAAA" data-position-name="Salesforce Marketing Cloud Developer">Salesforce Marketing Cloud Developer</option>
+    </select>
     <span class="help-text">
-      This key is used by the Flow to find/create the related Position__c and Application__c record.
+      This title is used by the Flow to find the related Position__c and create the Application__c record.
     </span>
   </label>
 
-  <input type="hidden" name="Desired_Position_Title__c" id="desiredPositionTitle" />
+  <input type="hidden" name="Position_Title__c" id="desiredPositionTitle" />
 </fieldset>
 
 <!-- APPLICATION SECTION -->
